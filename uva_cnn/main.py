@@ -5,7 +5,7 @@ L.seed_everything(42)
 
 parser = argparse.ArgumentParser(description='Train models')
 parser.add_argument('--model', type=str, choices=['googlenet', 'resnet', 'resnetpreact', 'densenet'], help='Model to train', required=True)
-parser.add_argument('--max-epochs', type=int, default=10, help='Maximum number of epochs')
+parser.add_argument('--max-epochs', type=int, default=20, help='Maximum number of epochs')
 args = parser.parse_args()
 
 from train import *
@@ -59,3 +59,8 @@ elif args.model == 'densenet':
         max_epochs=args.max_epochs,
     )
 torch.cuda.empty_cache()
+
+
+"""
+https://github.com/vllm-project/vllm/issues/1726
+"""

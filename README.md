@@ -6,3 +6,10 @@
 
 # projects
 - UVA CNN tutorial: Inception, ResNet, DenseNet
+- Bahdanau et al. (2015) attention mechanism
+
+# commands
+
+```bash
+watch -n0.1 nvidia-smi
+```

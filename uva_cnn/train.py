@@ -13,7 +13,7 @@ import time
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from lightning.pytorch.callbacks import LearningRateMonitor, ModelCheckpoint
+from lightning.pytorch.callbacks import LearningRateMonitor, ModelCheckpoint, EarlyStopping, DeviceStatsMonitor, Timer
 
 from dataloaders import *
 from utils import *
@@ -83,8 +83,8 @@ class CIFARModule(L.LightningModule):
         acc = (preds.argmax(dim=-1) == labels).float().mean()
 
         # Logs the accuracy per epoch to tensorboard (weighted average over batches)
-        self.log("train_acc", acc, on_step=False, on_epoch=True, prog_bar=True)
-        self.log("train_loss", loss, prog_bar=False)
+        self.log("train_acc", acc, on_step=False, on_epoch=True, prog_bar=True, sync_dist=True)
+        self.log("train_loss", loss, prog_bar=False, sync_dist=True)
         return loss  # Return tensor to call ".backward" on
 
     def validation_step(self, batch, batch_idx):
@@ -92,14 +92,14 @@ class CIFARModule(L.LightningModule):
         preds = self.model(imgs).argmax(dim=-1)
         acc = (labels == preds).float().mean()
         # By default logs it per epoch (weighted average over batches)
-        self.log("val_acc", acc)
+        self.log("val_acc", acc, sync_dist=True)
 
     def test_step(self, batch, batch_idx):
         imgs, labels = batch
         preds = self.model(imgs).argmax(dim=-1)
         acc = (labels == preds).float().mean()
         # By default logs it per epoch (weighted average over batches), and returns it afterwards
-        self.log("test_acc", acc)
+        self.log("test_acc", acc, sync_dist=True)
 
 
 def train_model(model_name, save_name=None, **kwargs):
@@ -111,6 +111,7 @@ def train_model(model_name, save_name=None, **kwargs):
     """
     max_epochs = kwargs.get('max_epochs', 180)
     kwargs.pop('max_epochs', None)
+    timer = Timer(duration="00:01:00:00", verbose=True)
 
     if save_name is None:
         save_name = model_name
@@ -130,6 +131,11 @@ def train_model(model_name, save_name=None, **kwargs):
                 save_weights_only=True, mode="max", monitor="val_acc"
             ),  # Save the best checkpoint based on the maximum val_acc recorded. Saves only weights and not optimizer
             LearningRateMonitor("epoch"),
+            EarlyStopping(
+                monitor="val_acc", min_delta=0.001, patience=10, mode="max", verbose=True
+            ),  # Stop training if val_acc didn't improve for 10 epochs
+            DeviceStatsMonitor(),   # Monitor GPU usage
+            timer,
         ],  # Log learning rate every epoch
     )  # In case your notebook crashes due to the progress bar, consider increasing the refresh rate
     trainer.logger._log_graph = True  # If True, we plot the computation graph in tensorboard
@@ -146,8 +152,17 @@ def train_model(model_name, save_name=None, **kwargs):
         model = CIFARModule(model_name=model_name, **kwargs)
         start_time = time.time()
         trainer.fit(model, train_loader, val_loader)
+
         training_time = (time.time() - start_time)/60
         print(f"Training took {training_time:.2f} minutes")
+
+        try:
+            print(f"Train time: {timer.time_elapsed('train') / 60:.2f} minutes")
+            print(f"Validation time: {timer.time_elapsed('validate') / 60:.2f} minutes")
+            print(f"Test time: {timer.time_elapsed('test') / 60:.2f} minutes")
+        except Exception as e:
+            print(e)
+        
         model = CIFARModule.load_from_checkpoint(
             trainer.checkpoint_callback.best_model_path
         )  # Load best checkpoint after training
