@@ -43,3 +43,4 @@ $$
 - https://github.com/Maab-Nimir/Neural-Machine-Translation-by-Jointly-Learning-to-Align-and-Translate/tree/main
 - https://github.com/mengjizhiyou/pytorch_model/blob/3c5e6eb5526b9f77bd3d43645aa954534e9385fb/bahdanau_attention.py
 - https://github.com/sooftware/attentions/tree/master
+- https://machinelearningmastery.com/the-bahdanau-attention-mechanism/

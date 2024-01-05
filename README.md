@@ -13,3 +13,21 @@
 ```bash
 watch -n0.1 nvidia-smi
 ```
+
+# pytorch matrix operations
+
+```
+https://pytorch.org/docs/stable/torch.html#indexing-slicing-joining-mutating-ops
+
+torch.bmm
+torch.matmul
+torch.squeeze
+torch.unsqueeze
+torch.detach
+torch.view
+torch.transpose
+torch.cat
+
+torch.arange(start, end, step)
+torch.view
+```

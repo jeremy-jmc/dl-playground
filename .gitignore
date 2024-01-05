@@ -162,3 +162,5 @@ cython_debug/
 data/
 kernel-metadata.json
 checkpoints/
+models/
+*.zip
