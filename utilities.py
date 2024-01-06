@@ -108,3 +108,12 @@ def save_checkpoint(model, optimizer, scheduler, epoch, loss, path, **kwargs):
     dict_to_save = {**kwargs, **fixed_params}
     # print(f'Saving keys: {dict_to_save.keys()}')
     torch.save(dict_to_save, path)
+
+
+def nn_params(model):
+    """Get the number of parameters of a model
+
+    References:
+        https://discuss.pytorch.org/t/how-do-i-check-the-number-of-parameters-of-a-model/4325/8
+    """
+    return sum(p.numel() for p in model.parameters() if p.requires_grad)

@@ -7,6 +7,10 @@
 # projects
 - UVA CNN tutorial: Inception, ResNet, DenseNet
 - Bahdanau et al. (2015) attention mechanism
+- Visualizing Convolutional Neural Networks
+- Adversarial FGSM attack
+- Seq2Seq translation tutorial
+
 
 # commands
 
