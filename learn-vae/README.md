@@ -1,7 +1,6 @@
 # learn-vae
 
 - https://github.com/Sheev13/vae/tree/master
-- https://debuggercafe.com/getting-started-with-variational-autoencoders-using-pytorch/
 - https://www.kaggle.com/code/speedwagon/variational-autoencoder-dogs-generation/notebook
 - https://avandekleut.github.io/vae/
 - https://towardsdatascience.com/variational-autoencoder-demystified-with-pytorch-implementation-3a06bee395ed
@@ -17,3 +16,6 @@
 - https://web.stanford.edu/~hammond/Probab20B.pdf
 - https://www.stat.auckland.ac.nz/~fewster/325/notes/ch3.pdf
 - https://imai.fas.harvard.edu/teaching/files/Expectation.pdf
+
+- https://debuggercafe.com/getting-started-with-variational-autoencoders-using-pytorch/
+- https://youtu.be/iwEzwTTalbg?si=bUcp9AGVl-8O_j3e

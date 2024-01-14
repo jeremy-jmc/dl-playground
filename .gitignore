@@ -164,3 +164,7 @@ kernel-metadata.json
 checkpoints/
 models/
 *.zip
+*.exe
+screenshot.png
+
+trash.py
