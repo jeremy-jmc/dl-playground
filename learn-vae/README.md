@@ -16,6 +16,7 @@
 - https://web.stanford.edu/~hammond/Probab20B.pdf
 - https://www.stat.auckland.ac.nz/~fewster/325/notes/ch3.pdf
 - https://imai.fas.harvard.edu/teaching/files/Expectation.pdf
+- https://towardsdatascience.com/beginner-guide-to-variational-autoencoders-vae-with-pytorch-lightning-part-2-6b79ad697c79
 
 - https://debuggercafe.com/getting-started-with-variational-autoencoders-using-pytorch/
 - https://youtu.be/iwEzwTTalbg?si=bUcp9AGVl-8O_j3e

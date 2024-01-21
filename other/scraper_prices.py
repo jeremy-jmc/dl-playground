@@ -18,7 +18,7 @@ client = OpenAI(
 
 driver = webdriver.Chrome()
 
-url = 'https://www.falabella.com.pe/falabella-pe/search?Ntt=aretes+sybilla'
+url = 'https://www.falabella.com.pe/falabella-pe/search?Ntt=puma+caven'
 driver.get(url)
 driver.maximize_window()
 

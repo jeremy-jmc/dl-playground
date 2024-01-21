@@ -1,3 +1,4 @@
+# https://beranger.medium.com/detect-text-on-image-using-google-cloud-vision-api-python-44c6e7430c44
 import json
 import subprocess
 import requests
