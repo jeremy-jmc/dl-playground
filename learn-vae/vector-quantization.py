@@ -36,32 +36,52 @@ def vector_quantization_scipy():
 
 def vector_quantization_pytorch():
     import torch
+    import matplotlib.pyplot as plt
     from vector_quantize_pytorch import VectorQuantize, ResidualVQ, GroupedResidualVQ, RandomProjectionQuantizer, FSQ, ResidualFSQ, LFQ, ResidualLFQ
 
     torch.manual_seed(0)
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
 
-    x = torch.randn(1, 1024, 256)
-    print(x)
+    dim = 256
+    cluster_number = 512
+    n_samples = 1024
+    x = torch.randn(1, n_samples, dim)
+    print('x:', x)
 
     vq = VectorQuantize(
-        dim = 256,
-        codebook_size = 512,     # codebook size
-        decay = 0.8,             # the exponential moving average decay, lower means the dictionary will change faster
-        commitment_weight = 1.,   # the weight on the commitment loss
+        dim=dim,
+        codebook_size=cluster_number,
+        decay=0.8,             # the exponential moving average decay, lower means the dictionary will change faster
+        commitment_weight=1.,   # the weight on the commitment loss
+
+        kmeans_init=True,
+        learnable_codebook=True,
+        in_place_codebook_optimizer=lambda *args, **kwargs: torch.optim.SGD(
+            *args, **kwargs, lr=1.0e-3, momentum=0.9 # weight_decay=1.0e-6
+        ),
+        # affine_param=True,
+        # affine_param_batch_decay=0.99,
+        # affine_param_codebook_decay=0.9,
+        ema_update=False,
         )
-    quantized, indices, commit_loss = vq(x) # (1, 1024, 256), (1, 1024), (1)
-    print(commit_loss)
-    
+
+    # * target: minimize the commitment loss
+    quantized, indices, commit_loss = vq(x) # (1, 1024, dim), (1, 1024), (1)
+    print('indices shape:', indices.shape)
+    print('quantized shape:', quantized.shape)
+    print('commit_loss:', commit_loss)
+    print('codebook shape:', vq.codebook.shape)
+
 
 def learn_vector_quantization():
+    # TODO: implement learn VQ algorithm
     pass
 
 if __name__ == '__main__':
-    # vector_quantization_pytorch()
     # vector_quantization_scipy()
-    learn_vector_quantization()
+    vector_quantization_pytorch()
+    # learn_vector_quantization()
 
 """
 https://github.com/search?type=code&q=%22from+vector_quantize_pytorch+import+VectorQuantize%22+language%3APython
@@ -80,4 +100,6 @@ https://speechprocessingbook.aalto.fi/Modelling/Vector_quantization_VQ.html
 https://medium.com/@udbhavkush4/demystifying-learning-vector-quantization-a-step-by-step-guide-with-code-implementation-from-ea3c4ab5330e
 https://machinelearningmastery.com/implement-learning-vector-quantization-scratch-python/
 https://www.turing.com/kb/application-of-learning-vector-quantization
+
+https://github.com/sohananisetty/motion_vqvae/blob/bfbd4b3bf3eadf08c8f8323ca06053f9a8099590/core/models/conv_vqvae.py#L83
 """

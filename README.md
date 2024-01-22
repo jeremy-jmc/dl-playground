@@ -35,3 +35,12 @@ torch.cat
 torch.arange(start, end, step)
 torch.view
 ```
+
+# utilities
+```
+inlay hints
+user snippets
+interactive notebook
+https://ash12rai-weblearning.medium.com/visual-studio-code-vs-code-inlay-hints-32fee837e80
+https://learn.microsoft.com/en-us/dynamics365/release-plan/2023wave2/smb/dynamics365-business-central/get-inlay-hints-source-editor-al-method-parameters-return-types
+```
