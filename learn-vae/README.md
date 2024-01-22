@@ -20,3 +20,5 @@
 
 - https://debuggercafe.com/getting-started-with-variational-autoencoders-using-pytorch/
 - https://youtu.be/iwEzwTTalbg?si=bUcp9AGVl-8O_j3e
+- https://github.com/explainingai-code?tab=repositories
+
