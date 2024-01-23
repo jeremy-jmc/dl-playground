@@ -169,3 +169,6 @@ screenshot.png
 
 trash.py
 settings.json
+
+mlruns/
+run_artifacts/

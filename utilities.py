@@ -1,3 +1,6 @@
+import torch
+import warnings
+from pandarallel import pandarallel
 import os
 import sys
 import time
@@ -19,13 +22,10 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', 100)
 sns.set_style("whitegrid")
 
-from pandarallel import pandarallel
 pandarallel.initialize()
 
-import warnings
 warnings.filterwarnings('ignore')
 
-import torch
 
 class ClearCache:
     """
@@ -35,6 +35,7 @@ class ClearCache:
     code block is entered and after it exits. It can be useful to free up memory on the GPU during
     long-running processes or when memory management is crucial.
     """
+
     def __enter__(self):
         """
         Clears the CUDA cache before entering the code block.
@@ -51,6 +52,7 @@ class ClearCache:
             exc_tb (traceback): The traceback information related to the exception, if any.
         """
         torch.cuda.empty_cache()
+
 
 def images_to_device(tensor: torch.Tensor, device: torch.device) -> torch.Tensor:
     """Move images to device.
@@ -75,7 +77,7 @@ def images_to_device(tensor: torch.Tensor, device: torch.device) -> torch.Tensor
             return tensor.to(device)
     else:
         return tensor.to(device)
-    
+
 
 def load_checkpoint(model, optimizer, scheduler, path, device):
     """Load checkpoint from directory to device
@@ -117,3 +119,13 @@ def nn_params(model):
         https://discuss.pytorch.org/t/how-do-i-check-the-number-of-parameters-of-a-model/4325/8
     """
     return sum(p.numel() for p in model.parameters() if p.requires_grad)
+
+
+def split_dataset(df: pd.DataFrame) -> dict:
+    df_numeric = df.select_dtypes(include=np.number)
+    df_categorical = df.select_dtypes(include=['object', 'category'])
+    df_other = df.select_dtypes(exclude=[np.number, 'object', 'category'])
+
+    return {'numeric': df_numeric,
+            'categorical': df_categorical,
+            'other': df_other}
