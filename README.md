@@ -18,7 +18,7 @@
 watch -n0.1 nvidia-smi
 ```
 
-# pytorch matrix operations
+# `pytorch` matrix operations
 
 ```
 https://pytorch.org/docs/stable/torch.html#indexing-slicing-joining-mutating-ops
@@ -34,6 +34,42 @@ torch.cat
 
 torch.arange(start, end, step)
 torch.view
+```
+
+# unusual operations
+
+## `pandas`
+
+```python
+.cut
+.explode
+.melt
+.pivot
+.ewm
+.rolling
+.diff
+.pct_change
+.infer_objects
+.mask
+.truediv
+.combine_first
+.pipe
+.applymap
+.corrwith
+.interpolate
+.crosstab
+.get_dummies
+.factorize
+```
+
+## `numpy`
+
+```
+.where
+.tril
+.triu
+.hstack
+.vstack
 ```
 
 # utilities

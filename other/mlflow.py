@@ -3,6 +3,8 @@ import mlflow
 # TODO: https://github.com/elizobee/pipeline_with_mlflow/blob/main/pipeline_with_mlflow.py
 # https://medium.com/@avikumart_/machine-learning-experiment-tracking-using-mlflow-8bba10f8f475
 # https://medium.com/grid-solutions/exploring-mlflow-ui-1eaf583749ba
+# https://github.com/mlflow/mlflow/blob/master/examples/evaluation/evaluate_with_model_validation.py
+# https://medium.com/analytics-vidhya/integrate-mlflow-model-logging-to-scikit-learn-pipeline-6f74e5c601c3
 from sklearn.datasets import load_breast_cancer, load_iris, load_wine, load_diabetes
 import pandas as pd
 from typing import Any, Optional, Union
