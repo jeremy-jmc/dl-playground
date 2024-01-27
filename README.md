@@ -2,7 +2,9 @@
 
 - https://github.com/Kaggle/kaggle-api
 - https://github.com/Kaggle/kaggle-api/wiki/Kernel-Metadata
-
+- https://nthu-datalab.github.io/ml/slides/Notation.pdf
+- https://hci-kdd.org/wordpress/wp-content/uploads/2016/02/HOLZINGER-Machine-Learning-Notation.pdf
+- https://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/mlmath/mlmath.pdf
 
 # projects
 - UVA CNN tutorial: Inception, ResNet, DenseNet
