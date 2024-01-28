@@ -101,5 +101,8 @@ https://medium.com/@udbhavkush4/demystifying-learning-vector-quantization-a-step
 https://machinelearningmastery.com/implement-learning-vector-quantization-scratch-python/
 https://www.turing.com/kb/application-of-learning-vector-quantization
 
+VQ-VAE
 https://github.com/sohananisetty/motion_vqvae/blob/bfbd4b3bf3eadf08c8f8323ca06053f9a8099590/core/models/conv_vqvae.py#L83
+https://github.com/nadavbh12/VQ-VAE/tree/master
+https://github.com/zalandoresearch/pytorch-vq-vae/tree/master
 """

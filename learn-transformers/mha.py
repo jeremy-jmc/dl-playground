@@ -7,6 +7,7 @@ from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms, utils
 from torchinfo import summary
 import vector_quantize_pytorch as vq
+from torchviz import make_dot
 
 SEED = 42
 torch.manual_seed(SEED)
@@ -234,22 +235,37 @@ class WrapperModel(MultiHeadAttention):
         return super().forward(**dummy_input)
 
 if __name__ == '__main__':
-    mha = MultiHeadAttention(8, 512, 0.1, True)
-    qkv = torch.randn(64, 64, 512)
+    heads = 8
+    d_model = 512
+    dropout_prob = 0.1
+    seq_len = 32
+    batch_size = 64
+
+    print('heads:', heads)
+    print('d_model:', d_model)
+    print('seq_len:', seq_len)
+    print('batch_size:', batch_size)
+
+    pmha = PrepareForMultiHeadAttention(d_model, heads, d_model // heads, True)
+    summary(pmha, input_size=(seq_len, batch_size, d_model), 
+            verbose=2, 
+            col_names=["input_size", "output_size", "params_percent", "num_params", "trainable", "mult_adds",], 
+            col_width=20,
+            device=device)
+    # make_dot(y.mean(), params=dict(pmha.named_parameters()))
+
+    mha = MultiHeadAttention(heads, d_model, dropout_prob, True)
+    qkv = torch.randn(seq_len, batch_size, d_model)
 
     # https://stackoverflow.com/questions/60480686/pytorch-model-summary-forward-func-has-more-than-one-argument
     # https://github.com/sksq96/pytorch-summary#multiple-inputs
     summary(mha, 
             # query=qkv, key=qkv, value=qkv,
-            input_size=[(32, 64, 512), (32, 64, 512), (32, 64, 512)], 
+            input_size=[(seq_len, batch_size, d_model), (seq_len, batch_size, d_model), (seq_len, batch_size, d_model)], 
             verbose=2, 
-            col_names=["input_size", "output_size", "params_percent", "num_params", "trainable"], 
-            col_width=20)
+            col_names=["input_size", "output_size", "params_percent", "num_params", "trainable", "mult_adds",], 
+            col_width=20,
+            device=device)
     
-    
-    # tsummary(mha, 
-    #          input_size=[(64, 64, 512), (64, 64, 512), (64, 64, 512)],
-    #          )
-
-    # model = WrapperModel(heads=8, d_model=512, dropout_prob=0.1)
-    # summary(model, verbose=2)
+# interesante implementacion, pero no me cuadra con lo que he leido del concepto de MultiHeadAttention
+# TODO: comparar con la implementacion de Harvard
