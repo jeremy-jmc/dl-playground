@@ -62,6 +62,7 @@ torch.view
 .crosstab
 .get_dummies
 .factorize
+.convert_dtypes
 ```
 
 ## `numpy`

@@ -1,4 +1,5 @@
 # https://github.com/harvardnlp/annotated-transformer
+# https://nlp.seas.harvard.edu/2018/04/03/attention.html#attention
 import os
 from os.path import exists
 import torch
@@ -227,6 +228,7 @@ class MultiHeadedAttention(nn.Module):
 
     def forward(self, query, key, value, mask=None):
         "Implements Figure 2"
+        # print('\tforward on MultiHeadedAttention')
         if mask is not None:
             # Same mask applied to all h heads.
             mask = mask.unsqueeze(1)
@@ -234,7 +236,7 @@ class MultiHeadedAttention(nn.Module):
 
         # 1) Do all the linear projections in batch from d_model => h x d_k
         # print(query.shape, key.shape, value.shape)
-        # ! alter the behaviour of summary function: print([lin(x).shape for lin, x in zip(self.linears, (query, key, value))])
+        # # ! alter the behaviour of summary function: print([lin(x).shape for lin, x in zip(self.linears, (query, key, value))])
         query, key, value = [
             lin(x).view(nbatches, -1, self.h, self.d_k).transpose(1, 2)
             for lin, x in zip(self.linears, (query, key, value))
@@ -402,8 +404,47 @@ def test_encoder():
             col_width=20,
             device=device)
 
+
+def test_model():
+    N = 6
+    d_model = 512
+    d_ff = 2048
+    h = 8
+    dropout = 0.1
+    seq_len = 32
+    batch_size = 16
+    model = make_model(10, 10, N)
+    # print(model)
+
+    data = torch.randint(0, 10, (batch_size, seq_len))
+    mask = subsequent_mask(seq_len)
+    out = model(data, data, mask, mask)
+    print(f'> out.shape: {out.shape}')
+    _, next_word = torch.max(out, dim=1)
+    print(f'> next_word.shape: {next_word.shape}')
+    print()
+
+    summary(model,
+            # input_size=[(batch_size, seq_len), (batch_size, seq_len)],
+            input_data=[data, data, mask, mask],
+            verbose=1,
+            col_names=["input_size", "output_size", "params_percent", "num_params", "trainable", "mult_adds",], 
+            col_width=20,
+            device=device)
+
 # TODO: from Part 2
 if __name__ == '__main__':
+    """
+    d / d_model
+        model size / hidden state dimension / positional encoding size
+    h
+        number of heads in the multi-head attention
+    seq_len / L
+        length of the input sequence
+    N
+        number of attention layers
+    """
     test_subsequent_mask()
     test_mha()
     test_encoder()
+    test_model()

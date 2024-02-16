@@ -17,6 +17,7 @@
 	// }
 
 	// https://www.youtube.com/watch?v=ZaH7nEzgX7o&t=352s
+	// https://www.youtube.com/watch?v=ME2Rgnr25kU
 	// https://code.visualstudio.com/docs/editor/userdefinedsnippets
 	"Create code block header": {
 		"prefix": "cbh",
@@ -203,6 +204,7 @@
 			"from torchvision import transforms, utils",
 			"from torchvision.utils import make_grid",
 			"from torchinfo import summary",
+			"from PIL import Image",
 			"# from torchsummary import summary",
 			"import vector_quantize_pytorch as vq",
 			"# import torchtext",
