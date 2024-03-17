@@ -8,3 +8,4 @@
 # https://ai.stackexchange.com/questions/41438/can-someone-help-me-understand-the-intuition-behind-the-query-key-and-value-mat
 # https://blog.nelhage.com/post/transformers-for-software-engineers/
 
+# https://www.youtube.com/watch?v=bCz4OMemCcA
