@@ -173,3 +173,5 @@ settings.json
 mlruns/
 run_artifacts/
 saved_models/
+
+*.pth

@@ -2,7 +2,7 @@
 1. CIFAR10 vs MNIST
 2. Other:
     - Loss Function: MSE, CrossEntropyLoss
-    - Chance(Baseline) vs. Epochs
+    - Chance(Baseline)
     - Accuracy vs. Epochs
 3. Architecture
     - VGG11
