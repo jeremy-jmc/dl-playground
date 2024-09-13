@@ -175,3 +175,4 @@ run_artifacts/
 saved_models/
 
 *.pth
+submission_*.csv

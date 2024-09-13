@@ -132,19 +132,22 @@ def split_dataset(df: pd.DataFrame) -> dict:
             'other': df_other}
 
 
-def plot_accuracy_loss(train_accuracies, train_losses):
+def plot_accuracy_loss(train_accuracies, val_accuracies, train_losses, val_losses):
     epochs = range(1, len(train_accuracies) + 1)
 
     plt.figure(figsize=(12, 6))
     plt.subplot(1, 2, 1)
     plt.plot(epochs, train_accuracies, 'b', label='Training Accuracy')
+    plt.plot(epochs, val_accuracies, 'r', label='Validation Accuracy')
     plt.title('Training Accuracy')
     plt.xlabel('Epochs')
     plt.ylabel('Accuracy')
     plt.legend()
 
+
     plt.subplot(1, 2, 2)
     plt.plot(epochs, train_losses, 'b', label='Training Loss')
+    plt.plot(epochs, val_losses, 'r', label='Validation Loss')
     plt.title('Training Loss')
     plt.xlabel('Epochs')
     plt.ylabel('Loss')
@@ -156,11 +159,14 @@ def plot_accuracy_loss(train_accuracies, train_losses):
 
 def print_images(images, labels, preds, n):
 
-    fig, ax = plt.subplots(n, n, figsize=(20, 20))
+    fig, ax = plt.subplots(n, n, figsize=(10, 10))
     for i in range(n):
         for j in range(n):
             index = i * n + j
-            ax[i, j].imshow(images[index].permute(1, 2, 0))
+            # Normalize the image data
+            image = images[index].permute(1, 2, 0)
+            image = (image - image.min()) / (image.max() - image.min())
+            ax[i, j].imshow(image)
             pred = preds[i].argmax().item()
             ax[i, j].set_title(f"{labels[index].item()} -> {pred}")
             ax[i, j].axis('off')
@@ -175,3 +181,4 @@ def save_clean_model(model, save_dir):
     model_path = f"{save_dir}/clean_model.pth"
 
     torch.save(model.state_dict(), model_path)
+
