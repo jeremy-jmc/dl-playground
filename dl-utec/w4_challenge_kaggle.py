@@ -154,10 +154,21 @@ plt.show()
 transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Resize((32, 32)),
-    transforms.RandomResizedCrop(32),
-    transforms.RandomHorizontalFlip(p=0.5),
-    transforms.RandomVerticalFlip(p=0.5),
-    transforms.ColorJitter(brightness=0.4, contrast=0.4, saturation=0.4, hue=0.4),
+    # transforms.RandomResizedCrop(32),
+    # transforms.RandomHorizontalFlip(p=0.5),
+    # transforms.RandomVerticalFlip(p=0.5),
+    # transforms.ColorJitter(brightness=0.4, contrast=0.4, saturation=0.4, hue=0.4),
+    # TODO: CIFAR10, MNIST, FASHION MNIST Normalization
+    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+])
+
+transform_val = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Resize((32, 32)),
+    # transforms.RandomResizedCrop(32),
+    # transforms.RandomHorizontalFlip(p=0.5),
+    # transforms.RandomVerticalFlip(p=0.5),
+    # transforms.ColorJitter(brightness=0.4, contrast=0.4, saturation=0.4, hue=0.4),
     # TODO: CIFAR10, MNIST, FASHION MNIST Normalization
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
 ])
@@ -190,7 +201,7 @@ class Nivel1Dataset(torch.utils.data.Dataset):
         return image, label
 
 train_set = Nivel1Dataset(train_df.sample(frac=1).reset_index(drop=True), transform=transform)
-val_set = Nivel1Dataset(val_df, transform=transform)
+val_set = Nivel1Dataset(val_df, transform=transform_val)
 # test_set = Nivel1Dataset(test_dataset, transform=transform)
 print(train_set[0])
 print(val_set[0])
@@ -387,18 +398,6 @@ train_model(model, train_loader, val_loader,
 # -----------------------------------------------------------------------------
 
 
-transform = transforms.Compose([
-    transforms.ToTensor(),
-    transforms.Resize((32, 32)),
-    # transforms.RandomResizedCrop(32),
-    # transforms.RandomHorizontalFlip(p=0.5),
-    # transforms.RandomVerticalFlip(p=0.5),
-    # transforms.ColorJitter(brightness=0.4, contrast=0.4, saturation=0.4, hue=0.4),
-    # TODO: CIFAR10, MNIST, FASHION MNIST Normalization
-    # transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-])
-
-
 def generate_submission(model, nivel, path_test_set = './data/NIVEL1/NIVEL1/TEST1_3/**/*.png', tags=''):
     submission_set = glob.glob(path_test_set, recursive=True)
     submission_set = pd.DataFrame(submission_set, columns=['Path'])
@@ -415,7 +414,7 @@ def generate_submission(model, nivel, path_test_set = './data/NIVEL1/NIVEL1/TEST
         image = plt.imread(img_path)
         if len(image.shape) == 2:
             image = np.stack((image,) * 3, axis=-1)
-        image = transform(image).unsqueeze(0).to(device)
+        image = transform_val(image).unsqueeze(0).to(device)
         # print(image.shape)
         pred = model(image)
         pred = torch.argmax(pred, dim=1).item()
