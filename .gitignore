@@ -176,3 +176,4 @@ saved_models/
 
 *.pth
 submission_*.csv
+*.pt
