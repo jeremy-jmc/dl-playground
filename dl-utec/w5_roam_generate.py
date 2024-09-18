@@ -3,6 +3,7 @@ https://github.com/inspire-group/adv-patch-paper-list
 https://github.com/SamSamhuns/yolov5_adversarial
 https://github.com/jhayes14/adversarial-patch/blob/master/make_patch.py
 https://github.com/search?q=adversarial%20patch&type=repositories
+https://pjreddie.com/darknet/
 
 IDEAS:
     - YOLO detecta carros y personas
@@ -40,6 +41,21 @@ DATASETS:
     Cityscapes
     Kaggle
         https://www.kaggle.com/datasets/alincijov/self-driving-cars/code
+    Persons: https://paperswithcode.com/datasets?task=pedestrian-detection
+        CityPersons *
+            https://openaccess.thecvf.com/content_cvpr_2017/papers/Zhang_CityPersons_A_Diverse_CVPR_2017_paper.pdf
+            https://github.com/cvgroup-njust/CityPersons/
+        INRIA
+        ETH Pedestrian
+        Caltech Pedestrian Dataset
+    Cars:
+        Indian Vehicle Dataset
+            https://www.kaggle.com/datasets/dataclusterlabs/indian-vehicle-dataset
+        FGVD *
+            https://paperswithcode.com/dataset/fgvd
+            https://github.com/ihubdata-mobility/public-fgvd
+        Vehicle Dataset
+            https://www.kaggle.com/datasets/pkdarabi/vehicle-detection-image-dataset/data
 BLOGS:
     https://artificio.org/blog/why-has-autonomous-driving-failed-perspectives-from-peru-and-insights-from-neuroai
 CHATGPT:

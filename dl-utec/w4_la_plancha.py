@@ -9,6 +9,8 @@ https://github.com/pogrebitskiy/CNN-Adversarial-Attacks
 https://github.com/ericyoc/adversarial-defense-cnn-poc/tree/main
 https://huggingface.co/timm?search_models=xcit
 https://huggingface.co/spaces/timm/leaderboard
+https://pytorch.org/vision/stable/transforms.html
+    augmentation policies
 """
 from utilities import nn_params, plot_accuracy_loss, print_images, save_clean_model
 import torch
