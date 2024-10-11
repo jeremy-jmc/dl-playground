@@ -1,0 +1,119 @@
+
+
+
+######################################################################
+
+https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html
+
+Las respuestas a este correo electrónico se publicarán como respuesta al anuncio, y todos los participantes del curso las verán.
+
+######################################################################
+
+Link 1) Extra GAN code : https://github.com/tomsercu/gan-tutorial-pytorch
+
+Link 2) Other GAN Formulation (Wasserstein GAN): https://github.com/Lornatang/WassersteinGAN_GP-PyTorch
+
+https://arxiv.org/abs/1701.07875
+
+https://github.com/martinarjovsky/WassersteinGAN
+
+
+Las respuestas a este correo electrónico se publicarán como respuesta al anuncio, y todos los participantes del curso las verán.
+
+######################################################################
+
+Aqui tutoriales de Conditional GANs en PyTorch : https://github.com/akanametov/pix2pix
+
+Una version mas reciente : https://github.com/GaParmar/img2img-turbo
+
+Las respuestas a este correo electrónico se publicarán como respuesta al anuncio, y todos los participantes del curso las verán.
+
+######################################################################
+
+
+1) https://github.com/AntixK/PyTorch-VAE/tree/master
+
+2) Adaptar a MNIST + CIFAR!
+
+3) Evaluar la calidad visual de la reconstruccion
+
+Las respuestas a este correo electrónico se publicarán como respuesta al anuncio, y todos los participantes del curso las verán.
+
+######################################################################
+
+Hola a todos, manhiana por el paro continuar con el modulo de VAE's desde casa. El Lab estara cerrado tambien porque estare camino a Italia para el ECCV. Si hubieran consultas/preguntas escribirme por email!
+
+Algunos tips para ir cambiando en el lab que salieron el Miercoles:
+
+1) ajustar learning rate
+
+2) cambiar de dataset (CIFAR/MNIST/Fashion-MNIST)
+
+3) Cambiar de arquitecture
+
+4) Tratar de hacer la visualizacion del "Smooth Image Interpolation/Sampling"
+
+5) Tomar nota del tiempo que toma entrenar el decoder (que para el VAE es lo que genera la imagen!)
+
+Nos vemos nuevamente el 7 de Octubre!
+
+Arturo
+
+######################################################################
+
+Hola a todos, les adjunto estos dos videos de tarea para ver de forma asincrona el Lunes. Debe ayudar para solidiciar algunas ideas pendientes de teoria de GANs y VAEs antes del Lab 2 (4 de Octubre) y en preparacion para el Parcial que es el 11 de Octubre.
+
+Link 1 Advanced GANs: https://www.youtube.com/watch?v=YuRAeQsTSo8
+
+Link 2 Advanced VAEs: https://www.youtube.com/watch?v=bXp8fk4MRXQ
+
+No dudar en enviarme un correo si tienen alguna pregunta,
+
+Arturo
+
+######################################################################
+
+
+Hola a todos,
+
+Les dejo este assignment de Deteccion de DeepFakes que sera relevante para el Lab 2. El Lab 2 no sera exactamente sobre lo mismo porque usara GANs o VAEs, pero creo que esta repo y el framework general de deepfake detection (Real vs Fake -- sobre todo para el Discriminador) sera relevante para el Lab 02.
+
+DeepFake detection:
+
+https://github.com/Balaji-Kartheek/DeepFake_Detection
+
+https://theaisummer.com/deepfakes/
+
+ 
+
+Adicionalmente, si no lo han hecho aun, les aconsejo que se instalen una cuenta de PyTorch Lightning y/o que evalen sus recursos computacionales para el Lab 02, ya sea correrlo en Kaggle de frente, Colab, o Colab Pro, o su computadora local. Las reglas del juego seran similares al del Lab 01. Chekeare nuevamente el horario del Lab para ver si lo podemos reservar por un total de 4 horas (1-5), se los confirmo manhiana.
+
+Arturo
+
+######################################################################
+
+
+Hola a todos, les comunico que estaremos re-programando el Lab 02 para la semana que viene (Muy probablemente Miercoles -- como para que yo tambien este en caso hayan preguntas), y que las exposiciones se pasaran a solo 1 semana en la 2nda mitad del semestre. EL Lunes que viene, haremos una ultima sesion teorica-practica de GAN+VAEs y compartire tambien avances interesantes que se han visto en el ECCV en Italia, en preparacion para el Lab. Es muy probable que el Parcial no se pueda mover y que igual quede para el Proximo Viernes!
+
+* Les ire pasando materiales adicionales de lecturas para el Viernes para que lo puedan ir revisando de forma asincrona.
+
+Arturo
+
+######################################################################
+
+
+Hola a todos, les sugiero que chekeen este blog donde se ve interpolacion lineal del Variational AutoEncoder (VAE): https://www.compthree.com/blog/autoencoder/
+
+Una tarea que me gustaria que todos hagan de forma asincronca y virtual durante el Viernes y/o el fin de semana es poder construir imagenes como estas con un VAE (ver imagen adjunta)
+
+Esto sera importante porque el Lunes haremos una clase de Teoria/Practica sobre este tema que cubrira algo que vendra en el Parcial, como tambien el Lab 02 que muy probablemente sea de GAN's pero que sera necesario saber conceptos de VAE's.
+
+Arturo
+
+######################################################################
+
+Hola a todos, a lo mejor ya estan enterados ahora que termina el dia: el premio Nobel de Fisica lo ganaron Geoff Hinton y John Hopfield. Los invito a que lean la breve resena oficial sobre sus trabajos en este link: https://www.nobelprize.org/prizes/physics/2024/press-release/
+
+Seria bueno que vayan leyendo sobre Hopfield Networks y Restricted Boltzman Machines. No esta en el silabo de la clase de Deep Learning porque son temas bastante avanzados, pero si alguien quisiera exponer sobre esos temas en la semana de presentaciones orales, son bienvenidos de hacerlo!
+
+######################################################################
