@@ -46,6 +46,7 @@ DATASETS:
             https://openaccess.thecvf.com/content_cvpr_2017/papers/Zhang_CityPersons_A_Diverse_CVPR_2017_paper.pdf
             https://github.com/cvgroup-njust/CityPersons/
         INRIA
+            https://gitlab.com/EAVISE/adversarial-yolo
         ETH Pedestrian
         Caltech Pedestrian Dataset
     Cars:
