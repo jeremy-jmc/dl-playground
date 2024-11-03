@@ -13,6 +13,13 @@ Oracle models:
 Adversarial Attacks:
     - PGD
     - FGSM
+Independent variables
+    - Noise of adversarial attacks
+Dependent variables
+    - Accuracy of the model
+Research question
+    - How can we verify that a ViT models is more robust than a another ViT model under adversarial attacks?
+    - How can we evaluate the alignment of the oracle model with a ViT model in classificator tasks?
 """
 import torch
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
